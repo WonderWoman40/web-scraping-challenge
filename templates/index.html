@@ -30,26 +30,24 @@
     <div class="row">
       <div class="col-md-12">
         <h2><u>Latest Mars News</u></h2>
-      </div>
-    </div>
+    <!--</div> > -->
   </br>
-    <div class="row">
-      <div class="col-md-12">
-        <h4>{{mars.news_title}}</h4>
-        <p>{{mars.news_p}}</p>
+    <!-- <div class="row"> -->
+        <h4>{{mars.mars_news}}</h4>
+        <p>{{mars.mars_paragraph}}</p>
       </div>
     </div>
   <hr>
     <div class="row">
       <div class="col-md-8 border">
-        <h2 class=""><u>Featured Mars Image</u></h2> 
+        <h2 class=""><u>mars image</u></h2> 
         </br>
-        <img src="{{mars.featured_image_url}}" alt="Features Mars Image">
+        <img src="{{mars_image.img}}" alt="Features Mars Image">
       </div>
       <div class="col-md-4">
         <div class="border">
-          <h5>Mars Facts</h5>
-            {{ mars.fact_table | safe }}
+          <h5>mars facts</h5>
+            {{ mars.fact = table.html | safe }}
         </div>
       </div>
     </div>
