@@ -48,20 +48,21 @@ def marsImage():
     browser.visit(image_url)
     html = browser.html
     soup = BeautifulSoup(html, "html.parser")
-    image_url = soup.find("img", class_="thumb")["src"]
-    featured_image_url = 'https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA16225_hires.jpg'
+    image_thumbnail = soup.find("img", class_="thumb")["src"]
+    featured_image_url = "https://www.jpl.nasa.gov" + image_thumbnail
     return featured_image_url
 
 # Mars Facts
 def marsFacts():
     import pandas as pd
     facts_url = 'https://space-facts.com/mars/'
-    tables = pd.read_html(facts_url)
-    df = tables[0]
-    html_table = df.to_html()
-    html_table.replace('\n', '')
-    mars_facts = df.to_html('table.html')
-
+    browser.visit(facts_url)
+    mars_data = pd.read_html(facts_url)
+    mars_data = mars_data[0]
+    mars_data.columns = ["Description", "Mars"]
+    mars_data = mars_data.set_index("Description")
+    mars_facts = mars_data.to_html(index = True, header =True)
+    print(mars_facts) 
     return mars_facts
 
 
@@ -90,5 +91,5 @@ def marsHem():
     return mars_hemisphere
 
 
-    if __name__ == "__main__":
-        scrape()
+if __name__ == "__main__":
+    print(scrape())
